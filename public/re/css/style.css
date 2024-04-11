@@ -1,0 +1,18 @@
+html,
+body,
+header,
+#intro{
+	height: 100%;
+}
+#intro{
+	background: url('img1.jpg')no-repeat ;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;
+	/*background-position: right;*/
+}
+.navbar{
+		
+		background-color: red;
+	}

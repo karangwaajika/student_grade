@@ -1,0 +1,696 @@
+ <script src="js/jquery-3.3.1.min.js"></script>
+ <!-- script type="text/javascript" src="js/jquery.min.js"></script> -->
+ <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  
+  
+  
+
+ 
+
+<script type="text/javascript" src="js/bootstrapValidator.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.css">
+<script type="text/javascript" src="js/addons/datatables.min.js"></script>
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.sidebar-menu').on('click', 'a',function(){
+            $('.sidebar-menu li a.active').removeClass('active');
+            $(this).addClass('active');
+        })
+    })
+</script>
+ <script type="text/javascript">
+         $(document).ready(function () {
+     $('#dtBasicExample').DataTable();
+     $('.dataTables_length').addClass('bs-select');
+   });
+       </script>
+<script src="../js/fontawesome.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#date").datepicker({
+        dateFormat:"yy-mm-dd",
+        showAnim: 'drop'
+       
+       
+      });
+
+    });
+
+     $(document).ready(function(){
+      $("#date1").datepicker({
+        dateFormat:"yy-mm-dd",
+        showAnim: 'drop'
+       
+       
+      });
+
+    });
+      $(document).ready(function(){
+      $("#datepayback").datepicker({
+        dateFormat:"yy-mm-dd",
+        showAnim: 'drop',
+        minDate:"0d"
+       
+       
+      });
+
+    });
+  </script>
+   <script type="text/javascript">
+      $(document).ready(function(){
+        $("#from_date").datepicker({
+          numberOfMonth:1,
+          dateFormat:"yy-mm-dd",
+          showAnim: 'drop',
+         
+          onSelect:function(selectdate){
+            var dt=new Date(selectdate);
+            dt.setDate(dt.getDate()+0)
+            $("#to_date").datepicker("option","minDate",dt);
+          }
+        });
+
+         $("#to_date").datepicker({
+          numberOfMonth:1,
+          dateFormat:"yy-mm-dd",
+          showAnim: 'drop',
+          onSelect:function(selectdate){
+            var dt=new Date(selectdate);
+            dt.setDate(dt.getDate()-0)
+            $("#from_date").datepicker("option","maxDate",dt);
+          }
+        });
+
+      });
+    </script>
+       <script type="text/javascript">
+      $(document).ready(function(){
+        $("#from_datef").datepicker({
+          numberOfMonth:1,
+          dateFormat:"yy-mm-dd",
+          showAnim: 'drop',
+         
+          onSelect:function(selectdate){
+            var dt=new Date(selectdate);
+            dt.setDate(dt.getDate()+0)
+            $("#to_datef").datepicker("option","minDate",dt);
+          }
+        });
+
+         $("#to_datef").datepicker({
+          numberOfMonth:1,
+          dateFormat:"yy-mm-dd",
+          showAnim: 'drop',
+          onSelect:function(selectdate){
+            var dt=new Date(selectdate);
+            dt.setDate(dt.getDate()-0)
+            $("#from_datef").datepicker("option","maxDate",dt);
+          }
+        });
+
+      });
+    </script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+ 
+            window.setTimeout(function() {
+        $("#sams").fadeTo(1000, 0).slideUp(1000, function(){
+        $(this).remove(); 
+        });
+            }, 5000);
+ 
+        });
+    </script>
+    
+      <script type="text/javascript">
+      $(function() {
+        $(".del").click(function(){
+       var element = $(this);
+       var del_id = element.attr("id");
+       var info = 'id=' + del_id;
+       if(confirm("Sure you want to Approve this Transfer? There is NO undo!"))
+       {
+        $.ajax({
+          type: "GET",
+          url: "./approveTransfer.php",
+          data: info,
+          success: function(){
+          }
+       });
+        $(this).parents(".record").animate({ backgroundColor: "#D9F8CA" }, "fast")
+        .animate({ opacity: "hide" }, "slow");
+       }
+       return false;
+       });
+       });
+
+       
+       </script>
+       <script type="text/javascript">
+
+$(document).ready(function () {
+
+    window.setTimeout(function() {
+$("#sams1").fadeTo(1000, 0).slideUp(1000, function(){
+$(this).remove(); 
+});
+    }, 5000);
+
+});
+</script>
+       <script type="text/javascript">
+      $(function() {
+        $(".deleteSubject").click(function(){
+       var element = $(this);
+       var del_id = element.attr("id");
+       
+       var info = 'id=' + del_id;
+       if(confirm("Sure you want to Delete this Subject"+info+" ? There is NO undo!"))
+       {
+        $.ajax({
+          type: "GET",
+          url: "deleteSubject.php",
+          data:info,
+          success: function(){
+          }
+       });
+        $(this).parents(".record").animate({ backgroundColor: "#FAE5C3" }, "fast")
+        .animate({ opacity: "hide" }, "slow");
+       }
+       return false;
+       });
+       });
+
+       
+       </script>
+       <script type="text/javascript">
+      $(function() {
+        $(".deleteMarks").click(function(){
+       var element = $(this);
+       var del_id = element.attr("id");
+       
+       var info = 'id=' + del_id;
+       if(confirm("Sure you want to Delete this Marks"+info+" ? There is NO undo!"))
+       {
+        $.ajax({
+          type: "GET",
+          url: "deleteMarks.php",
+          data:info,
+          success: function(){
+          }
+       });
+        $(this).parents(".record").animate({ backgroundColor: "#FAE5C3" }, "fast")
+        .animate({ opacity: "hide" }, "slow");
+       }
+       return false;
+       });
+       });
+
+       
+       </script>
+        <script type="text/javascript">
+      $(function() {
+        $(".ApproveCashOut").click(function(){
+       var element = $(this);
+       var del_id = element.attr("id");
+       var info = 'id=' + del_id;
+       if(confirm("Sure you want to Approve this Cash Out? There is NO undo!"))
+       {
+        $.ajax({
+          type: "GET",
+          url: "./approveCashOut.php",
+          data: info,
+          success: function(){
+          }
+       });
+        $(this).parents(".record").animate({ backgroundColor: "#FAE5C3" }, "fast")
+        .animate({ opacity: "hide" }, "slow");
+       }
+       return false;
+       });
+       });
+
+       </script>
+        <script type="text/javascript">
+      $(function() {
+        $(".DisCashOut").click(function(){
+       var element = $(this);
+       var del_id = element.attr("id");
+       var info = 'id=' + del_id;
+       if(confirm("Sure you want to Disapprove this Cash Out? There is NO undo!"))
+       {
+        $.ajax({
+          type: "GET",
+          url: "./disCashOut.php",
+          data: info,
+          success: function(){
+          }
+       });
+        $(this).parents(".record").animate({ backgroundColor: "#FAE5C3" }, "fast")
+        .animate({ opacity: "hide" }, "slow");
+       }
+       return false;
+       });
+       });
+
+       
+       </script>
+<script type="text/javascript">
+  $(document).ready(function(){
+       $('#add').click(function(){
+        $('#econ').toggleClass('fa fa-eye-slash');
+        var input = $("#password");
+        if (input.attr("type")==="password") {
+          input.attr("type","text");
+        }
+        else{
+          $('#econ').toggleClass('fa fa-eye');
+          input.attr("type","password");
+        }
+       });
+     });
+</script>
+
+ 
+<script>
+$(function(){
+   
+
+  //Timepicker
+  $('.timepicker').timepicker({
+    showInputs: false
+  })
+
+ 
+  
+  
+});
+</script>
+  <script>
+$(document).ready(function(e){
+    // function displayChat(){
+
+    // $.ajax({
+    //     url:'display_msg.php',
+    //     type:'POST',
+    //     success:function(data){
+    //         $("#chatDisplay").html(data);
+    //     }
+    // });
+
+    // }
+
+    setInterval(function(){displayChat();},1000);
+   $('#sendMessageBtn').click(function(e){
+     var stu_id=$("#user_name").val();
+      var re_name=$("#re_name").val();
+       $("#myChatForm")[0].reset();
+
+       $.ajax({
+           url:'send_msg.php',
+           type:'POST',
+           data:{
+               ad_id:ad_id,
+               re_name:re_name
+           }
+       });
+   });
+});
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#reg_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            username: {
+                validators: {
+                        stringLength: {
+                         min: 3,
+                        max: 10,
+                        message:'Please enter at least 3 characters and no more than 10'
+                    },
+                    regexp: {
+                        regexp: /^[A-Za-z]+$/,
+                        message: 'please put only alphabetic letters'
+                    },
+                        notEmpty: {
+                        message: 'Please supply your first name'
+                    }
+                }
+            },
+             category_name: {
+                validators: {
+                      
+                    regexp: {
+                        regexp: /^[A-Z a-z]+$/,
+                        message: 'please put only alphabetic lettfers'
+                    },
+                        notEmpty: {
+                        message: 'Please supply a sector name name'
+                    }
+                }
+            },
+               fullname: {
+                validators: {
+                     stringLength: {
+                         min: 3,
+                         max:30,
+                        message:'Please enter at least 3 characters and no more than 16'
+                    },
+                      
+                    regexp: {
+                        regexp: /^[A-Z a-z]+$/,
+                        message: 'please put only alphabetic lettfers'
+                    },
+                        notEmpty: {
+                        message: 'Please supply a fullname name'
+                    }
+                }
+            },
+               p_name: {
+                validators: {
+                     stringLength: {
+                         min: 3,
+                         max:20,
+                        message:'Please enter at least 3 '
+                    },
+                      
+                    regexp: {
+                        regexp: /^[A-Z a-z]+$/,
+                        message: 'please put only alphabetic lettfers'
+                    },
+                        notEmpty: {
+                        message: 'Please supply a product name'
+                    }
+                }
+            },
+             student_name: {
+                validators: {
+                     stringLength: {
+                         min: 3,
+                         max:30,
+                        message:'Please enter at least 3 characters and no more than 16'
+                    },
+                      
+                    regexp: {
+                        regexp: /^[A-Z a-z]+$/,
+                        message: 'please put only alphabetic lettfers'
+                    },
+                        notEmpty: {
+                        message: 'Please supply a father name'
+                    }
+                }
+            },
+             maname: {
+                validators: {
+                     stringLength: {
+                         min: 3,
+                         max:30,
+                        message:'Please enter at least 3 characters and no more than 16'
+                    },
+                      
+                    regexp: {
+                        regexp: /^[A-Z a-z]+$/,
+                        message: 'please put only alphabetic lettfers'
+                    },
+                        notEmpty: {
+                        message: 'Please supply a mother name'
+                    }
+                }
+            },
+             bname: {
+                validators: {
+                     stringLength: {
+                         min: 3,
+                         max:30,
+                        message:'Please enter at least 3 characters and no more than 16'
+                    },
+                      
+                    regexp: {
+                        regexp: /^[A-Z a-z]+$/,
+                        message: 'please put only alphabetic lettfers'
+                    },
+                        notEmpty: {
+                        message: 'Please supply a baby name'
+                    }
+                }
+            },
+              chargeFee: {
+                validators: { 
+                  stringLength: {
+                         
+                         max:9,
+                        message:'Please no more than 9 digits'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]+$/,
+                        message: 'please put only numerical characters'
+                    },
+                        notEmpty: {
+                        message: 'Please supply Charge Fee'
+                    }
+                }
+            },
+           expAmount: {
+                validators: {
+                     stringLength: {
+                         
+                         max:9,
+                        message:'Please no more than 9 digits'
+                    },
+                      
+                    regexp: {
+                        regexp: /^[0-9]+$/,
+                        message: 'please put only numerical characters'
+                    },
+                        notEmpty: {
+                        message: 'Please supply amount'
+                    }
+                }
+            },
+            amount: {
+                validators: {
+                     stringLength: {
+                         
+                         max:9,
+                        message:'Please enter no more than 9 digits'
+                    },
+                      
+                    regexp: {
+                        regexp: /^[0-9]+$/,
+                        message: 'please put only numerical characters'
+                    },
+                        notEmpty: {
+                        message: 'Please supply amount'
+                    }
+                }
+            },
+              tr_amount: {
+                validators: {
+                     stringLength: {
+                         
+                         max:9,
+                        message:'Please enter no more than 9 digits'
+                    },
+                      
+                    regexp: {
+                        regexp: /^[0-9]+$/,
+                        message: 'please put only numerical characters'
+                    },
+                        notEmpty: {
+                        message: 'Please supply amount'
+                    }
+                }
+            },
+             additionalAmount: {
+                validators: {
+                     stringLength: {
+                         
+                         max:9,
+                        message:'Please enter no more than 9 digits'
+                    },
+                      
+                    regexp: {
+                        regexp: /^[0-9]+$/,
+                        message: 'please put only numerical characters'
+                    },
+                        notEmpty: {
+                        message: 'Please supply amount'
+                    }
+                }
+            },
+            amount: {
+                validators: {
+                     stringLength: {
+                         
+                         max:9,
+                        message:'Please enter no more than 9 digits'
+                    },
+                      
+                    regexp: {
+                        regexp: /^[0-9]+$/,
+                        message: 'please put only numerical characters'
+                    },
+                        notEmpty: {
+                        message: 'Please supply amount'
+                    }
+                }
+            },
+              em_nationalid: {
+                validators: {
+                     stringLength: {
+                         min: 16,
+                         max:16,
+                        message:'Please enter exactly 16 digits'
+                    },
+                      
+                    regexp: {
+                        regexp: /^[0-9]+$/,
+                        message: 'please put only numerical characters'
+                    },
+                        notEmpty: {
+                        message: 'Please supply National ID'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your phone number'
+                    },
+                    
+                    stringLength: {
+                        min: 10,
+                        max: 10,
+                        message:'Please enter at least 10 characters and no more than 10'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]+$/,
+                        message: 'please put only integers'
+                    }
+                }
+            },
+            address: {
+                validators: {
+                    //  stringLength: {
+                    //     max: 8,
+                    // },
+                    notEmpty: {
+                        message: 'Please supply your street address'
+                    }
+                }
+            },
+            city: {
+                validators: {
+                     stringLength: {
+                        min: 4,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your city'
+                    }
+                }
+            },
+            state: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select your state'
+                    }
+                }
+            },
+            zip: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your zip code'
+                    },
+                    zipCode: {
+                        country: 'US',
+                        message: 'Please supply a vaild zip code'
+                    }
+                }
+            },
+    comment: {
+                validators: {
+                      stringLength: {
+                        min: 5,
+                        max: 200,
+                        message:'Please enter at least 5 characters and no more than 200'
+                    },
+                    notEmpty: {
+                        message: 'Please supply a description about yourself'
+                    }
+                    }
+                 }, 
+   email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your email address'
+                    },
+                    emailAddress: {
+                        message: 'Please supply a valid email address'
+                    }
+                }
+            },
+          
+  passworda: {
+            validators: {
+                identical: {
+                    field: 'passwordb',
+                    message: 'Confirm your password below - type same password please'
+                }
+            }
+        },
+        passwordb: {
+            validators: {
+                identical: {
+                    field: 'passworda',
+                    message: 'The password and its confirm are not the same'
+                }
+            }
+         },
+      
+            
+            }
+        })
+    
+  
+        // .on('success.form.bv', function(e) {
+        //     $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+        //         $('#reg_form').data('bootstrapValidator').resetForm();
+ 
+        //     // Prevent form submission
+        //     e.preventDefault();
+ 
+        //     // Get the form instance
+        //     var $form = $(e.target);
+ 
+        //     // Get the BootstrapValidator instance
+        //     var bv = $form.data('bootstrapValidator');
+ 
+        //     // Use Ajax to submit form data
+        //     $.post($form.attr('action'), $form.serialize(), function(result) {
+        //         console.log(result);
+        //     }, 'json');
+        // });
+});
+ 
+ 
+ 
+ 
+ 
+          
+            
+</script>
