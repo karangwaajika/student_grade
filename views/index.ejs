@@ -45,12 +45,20 @@
             </div>
             
           </nav>
-        <div class="row">
-          <div id="response"></div>
+        <div class="row"> 
         </div>
         <div class="row mt-5">
           <div class="col-md-6 border-end border-warning">
-           
+            <% for( msg of getFlashMessages('error') ) { %>
+              <div class='alert alert-danger animated shake col-md-10 offset-1' id='sams' >
+                <center><i> <%= msg %></i></center>       
+             </div>
+            <% } %>
+            <% for( msg of getFlashMessages('success') ) { %>
+              <div class='alert alert-success animated bounce col-md-10 offset-1' id='sams' >
+                <center><i> <%= msg %></i></center>       
+             </div>
+            <% } %>
             <h5 class="text-dark">Register</h5>
             <form action="/add_user" method = "POST"enctype="multipart/form-data" id="myForm">
                <div class="form-group col-md-12 mb-3">
@@ -90,7 +98,7 @@
             <!-- message here -->
             <h5 class=" text-dark">Login</h5>
             
-            <!-- <form enctype="multipart/form-data" id="myFormLogin">
+            <form enctype="multipart/form-data" id="myFormLogin">
                <div class="form-group col-md-12 mb-3">
                <div class="input-group " id="email">
                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
@@ -115,7 +123,7 @@
                </div>
              </div>
                
-               </form> -->
+               </form>
           </div>
         </div>
       </div>

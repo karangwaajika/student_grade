@@ -19,11 +19,13 @@ export const addUser = async(request, response)=>{
             image: file.filename
         })
         try{
-            const savedUser = await user.save()
-            response.status(200).send(savedUser)
+            await User.create(user) 
+            await response.flash('success', 'Successfuly added')
+            response.redirect('/') 
         }
         catch(err){ 
-            response.status(400).send({'error': err})
+            await response.flash('error', err)
+            response.redirect('/') 
         }
     //}
 }
