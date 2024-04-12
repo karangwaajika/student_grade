@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Grade</title>
-    <link rel="icon" href="images/wseal.jpg" type="image/x-icon" />
+    <link rel="icon" href="images/useradmin.png" type="image/x-icon" />
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="admin/bootstrap-4.1.3-dist/css/validecss.css">
     <link rel="stylesheet" href="css/mdb.min.css" />
@@ -52,12 +52,12 @@
           <div class="col-md-6 border-end border-warning">
            
             <h5 class="text-dark">Register</h5>
-            <form action="" enctype="multipart/form-data" id="myForm">
+            <form action="/add_user" method = "POST"enctype="multipart/form-data" id="myForm">
                <div class="form-group col-md-12 mb-3">
                <div class="input-group " id="email">
                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                  <input type="text" class="form-control" placeholder="Email" aria-label="Username"
-                   aria-describedby="basic-addon1" name="name" />
+                   aria-describedby="basic-addon1" name="email" />
                    <span class="input-group-text" id="basic-addon2">Email</span>
                </div>
                </div>
@@ -72,14 +72,13 @@
               <div class="form-group col-md-12 mb-3">
                <div class="input-group form-group col-md-12 mb-3" id="password">
                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
-                 <input type="hidden" name="adminId">
-                 <input id="uploadImage" type="file" class="form-control" accept="image/*" name="imagePhoto" />
+                 <input id="uploadImage" type="file" class="form-control" accept="image/*" name="image" />
                    <span class="input-group-text" id="basic-addon2">Photo</span>
                </div>
               </div>
               <div class="form-group col-md-12 mb-3">
                <div class="input-group col-md-12 mb-3">
-                <input type="hidden"  name="action" value="insertAdmin">
+                
                  <button type="submit" class="btn btn-primary btn-block"  name="signUp">Signup</button>
                </div>
              </div>
@@ -91,7 +90,7 @@
             <!-- message here -->
             <h5 class=" text-dark">Login</h5>
             
-            <form method="POST" action="" enctype="multipart/form-data" id="myFormLogin">
+            <!-- <form enctype="multipart/form-data" id="myFormLogin">
                <div class="form-group col-md-12 mb-3">
                <div class="input-group " id="email">
                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
@@ -116,7 +115,7 @@
                </div>
              </div>
                
-               </form>
+               </form> -->
           </div>
         </div>
       </div>
