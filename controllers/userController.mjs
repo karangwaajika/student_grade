@@ -34,5 +34,16 @@ export const loginUser = (request, response)=>{
     response.redirect('/dashboard')
 }
 export const userHomePage = (request, response)=>{
-    response.render('dashboard')
+    const user = request.user
+    response.render('dashboard', {user})  
+} 
+export const logout = (request, response)=>{
+    request.logout((err)=>{
+        if(err){
+            response.sendStatus(400)
+        }else{
+            response.redirect('/') 
+        }
+    });
+    
 }

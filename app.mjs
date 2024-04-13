@@ -40,7 +40,7 @@ app.use(route)
 
 app.get('/', (request, response)=>{
     const messages = request.session.messages
-    response.render('index', {messages})
+    response.render('index', {messages}) 
 })
 
 

@@ -16,11 +16,12 @@ const storage = multer.diskStorage({
     filename: (req, file, cb)=>{
       cb(null, file.fieldname + "_" + Date.now() + "_" + file.originalname)
     }
-  }) 
+  })  
 const upload = multer({ storage: storage })
 
 route.post('/add_user', upload.single('image') ,controller.addUser)
 route.post('/login_user', upload.none() ,passport.authenticate('local',{ failureRedirect: '/' ,failureMessage: true}), controller.loginUser)
 route.get('/dashboard', controller.userHomePage)
+route.get('/logout', controller.logout)
 
 export default route 
