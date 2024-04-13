@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import route from './route/route.mjs'
 import session from 'express-session'
 import flash from 'express-flash-message'
+import passport from 'passport'
 
 dotenv.config()
 const PORT = process.env.PORT || 3000
@@ -23,7 +24,7 @@ app.set('view engine', 'ejs')
 
 app.use(session({
     secret:"ajika",
-    saveUninitialized: true,
+    saveUninitialized: false,
     resave: false,
     cookie:{
         maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
@@ -32,10 +33,14 @@ app.use(session({
 
 app.use(flash({sessionKeyName: 'express-flash-message'}))
 
-app.use(route)
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use(route) 
 
 app.get('/', (request, response)=>{
-    response.render('index')
+    const messages = request.session.messages
+    response.render('index', {messages})
 })
 
 

@@ -29,3 +29,10 @@ export const addUser = async(request, response)=>{
         }
     //}
 }
+
+export const loginUser = (request, response)=>{
+    response.redirect('/dashboard')
+}
+export const userHomePage = (request, response)=>{
+    response.render('dashboard')
+}

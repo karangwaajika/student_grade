@@ -95,15 +95,22 @@
           </div>
   
           <div class="col-md-6">
-            <!-- message here -->
+            <% if (messages) { %>
+              <% for( msg of messages) { %>
+                <div class='alert alert-danger animated shake col-md-10 offset-1' id='sams' >
+                  <center><i> <%= msg %></i></center>       
+               </div>
+              <% } %>
+            <% } %>
+            
             <h5 class=" text-dark">Login</h5>
             
-            <form enctype="multipart/form-data" id="myFormLogin">
+            <form action="/login_user" method="POST" enctype="multipart/form-data" id="myFormLogin">
                <div class="form-group col-md-12 mb-3">
                <div class="input-group " id="email">
                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                  <input type="text" class="form-control" placeholder="Email" aria-label="Username"
-                   aria-describedby="basic-addon1" name="name" />
+                   aria-describedby="basic-addon1" name="email" />
                    <span class="input-group-text" id="basic-addon2">Email</span>
                </div>
                </div>

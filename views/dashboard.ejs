@@ -1,0 +1,140 @@
+<%- include('header') %>
+      <div class="row mt-3">
+        <div class="col-md-4 offset-4 text-dark ">
+        <h4>Operations to Work on</h4>
+      </div>
+      </div>
+    <div class="row mt-3">
+  
+        <div class="col-md-4">
+      <div class="card mb-2" style="max-width: 300px;">               
+        <div class="card-body">
+              <a href="/addSubject" id="clickExpRev">     
+            <div class="col-md-12" >
+              <h4 class="text-center text-dark"> <i>Add Subject</i></h4>
+           </div>
+           </a>      
+        </div>
+        </div>
+      </div>
+        <div class="col-md-4">
+      <div class="card mb-2" style="max-width: 300px;">               
+        <div class="card-body">
+              <a href="/addStudent" id="clickExpRev">     
+            <div class="col-md-12" >
+              <h4 class="text-center text-dark"> <i>Add Student</i></h4>
+           </div>
+           </a>      
+        </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+      <div class="card mb-2" style="max-width: 300px;">               
+        <div class="card-body">
+              <a href="/viewStudent" id="clickExpRev">     
+            <div class="col-md-12" >
+              <h4 class="text-center text-dark"> <i>View Student</i></h4>
+           </div>
+           </a>      
+        </div>
+        </div>
+      </div>
+        <div class="col-md-4">
+      <div class="card mb-2" style="max-width: 300px;">               
+        <div class="card-body">
+              <a href="/giveMarks" id="clickExpRev">     
+            <div class="col-md-12" >
+              <h4 class="text-center text-dark"> <i>Give Marks</i></h4>
+           </div>
+           </a>      
+        </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+      <div class="card mb-2" style="max-width: 300px;">               
+        <div class="card-body">
+              <a href="/report" id="clickExpRev">     
+            <div class="col-md-12" >
+              <h4 class="text-center text-dark"> <i>Report</i></h4>
+           </div>
+           </a>      
+        </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+      <div class="card mb-2" style="max-width: 300px;">               
+        <div class="card-body">
+              <a href="/orders" id="clickExpRev">     
+            <div class="col-md-12" >
+              <h4 class="text-center text-dark"> <i>Orders Files</i></h4>
+           </div>
+           </a>      
+        </div>
+        </div>
+      </div>
+    </div>  
+     
+  </div>
+   
+  <%- include('footer') %>
+  <script type="text/javascript">
+   
+ $(document).ready(function (e) {
+ $("#myForm").on('submit',(function(e) {
+ e.preventDefault();
+    
+      
+        $.ajax({
+         url:'insertAdmin.php',
+         type:'POST',
+
+         data:new FormData(this),
+         contentType: false,
+         cache: false,
+   processData:false,
+         success:function(data) {
+           $('#response').html(data);
+           
+            $("#myForm")[0].reset();
+
+         }
+
+        });
+      
+   }));
+});
+
+
+ $(document).ready(function (e) {
+ $("#myFormLogin").on('submit',(function(e) {
+ e.preventDefault();
+    
+      
+        $.ajax({
+         url:'insertAdmin.php',
+         type:'POST',
+
+         data:new FormData(this),
+         contentType: false,
+         cache: false,
+   processData:false,
+         success:function(data) {
+           $('#response').html(data);
+           
+            $("#myFormLogin")[0].reset();
+
+         }
+
+        });
+      
+   }));
+});
+    
+  </script>
+
+
+    
+      
+  </body>
+</html>
+
