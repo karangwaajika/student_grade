@@ -84,3 +84,23 @@ export const addSubject = async(request, response)=>{
     }
     
 }
+
+export const updateSubject = async(request, response)=>{
+    const {body:{name, id}} = request
+    try{
+        await Subject.findByIdAndUpdate(id, {name})
+        await response.flash('update', 'Subject Successfully updated')
+        response.redirect("/addSubject")
+    }catch(err){
+        console.log(err)
+    }
+}
+
+export const deleteSubject = async(request, response)=>{
+    const {params:{id}} = request
+    try{
+        await Subject.findOneAndDelete({_id:id})
+    }catch(err){
+        console.log(err)
+    }
+}

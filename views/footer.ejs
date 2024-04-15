@@ -174,11 +174,11 @@ $(this).remove();
        var del_id = element.attr("id");
        
        var info = 'id=' + del_id;
-       if(confirm("Sure you want to Delete this Subject"+info+" ? There is NO undo!"))
+       if(confirm("Sure you want to Delete the Subject ? There is NO undo!"))
        {
         $.ajax({
           type: "GET",
-          url: "deleteSubject.php",
+          url: "deleteSubject/"+del_id+"",
           data:info,
           success: function(){
           }

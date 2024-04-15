@@ -25,5 +25,7 @@ route.get('/dashboard', controller.userHomePage)
 route.get('/logout', controller.logout)
 route.get('/addSubject', controller.viewSubject)
 route.post('/addSubject', upload.none(), controller.addSubject)
+route.post('/updateSubject', upload.none(), controller.updateSubject)
+route.get('/deleteSubject/:id', controller.deleteSubject)
 
 export default route 
