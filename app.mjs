@@ -5,6 +5,7 @@ import route from './route/route.mjs'
 import session from 'express-session'
 import flash from 'express-flash-message'
 import passport from 'passport'
+import MongoStore from 'connect-mongo'
 
 dotenv.config()
 const PORT = process.env.PORT || 3000
@@ -28,7 +29,10 @@ app.use(session({
     resave: false,
     cookie:{
         maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
-    }
+    },
+    store: MongoStore.create({
+        client: mongoose.connection.getClient()
+    })
 }))
 
 app.use(flash({sessionKeyName: 'express-flash-message'}))

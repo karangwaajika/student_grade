@@ -1,0 +1,93 @@
+<%- include('header') %>
+      <div class="row mt-3">
+        <div class="col-md-4 offset-4 text-dark ">
+        <h4>Add Subject/Course</h4>
+      </div>
+      </div>
+    <div class="row mt-3">
+     
+     <div class="col-md-6 border-end border-warning">
+        <% for( msg of getFlashMessages('error') ) { %>
+            <div class='alert alert-danger animated shake col-md-10 offset-1' id='sams' >
+              <center><i> <%= msg %></i></center>       
+           </div>
+          <% } %>
+        <% for( msg of getFlashMessages('success') ) { %>
+        <div class='alert alert-success animated bounce col-md-10 offset-1' id='sams' >
+            <center><i> <%= msg %></i></center>       
+        </div>
+        <% } %>
+          
+          <form action="/addSubject" method="POST" enctype="multipart/form-data" id="myForm">
+             <div class="form-group col-md-12 mb-3">
+             <div class="input-group " id="subjectName">
+               <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+               <input type="text" class="form-control"  name="name" />
+                 <span class="input-group-text" id="basic-addon2">Name</span>
+             </div>
+             </div>
+             <div class="form-group col-md-12 mb-3">
+             <div class="input-group form-group col-md-12 mb-3" id="subjectDate">
+               <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
+               <input type="date" class="form-control" id="date" name="date" />
+                 <span class="input-group-text" id="basic-addon2">Date</span>
+             </div>
+            </div>
+            
+            <div class="form-group col-md-12 mb-3">
+             <div class="input-group col-md-12 mb-3">
+               <button type="submit" class="btn btn-primary btn-block"  id="action_button" name="signUp">Send</button>
+             </div>
+           </div>
+             
+             </form>
+        </div>
+        <div class="col-md-6">
+          <div id="response"></div>
+          <table id="" class="table table-sm "  cellspacing="0" width="100%">
+            <thead class="">
+              <tr>
+                <th class="th-sm font-weight-bold">#</th>
+                <th class="th-sm font-weight-bold">Subject Name</th> 
+                <th class="th-sm font-weight-bold">Suject Dame</th>
+                <th class="th-sm font-weight-bold text-center">Action</th>
+             
+              </tr>
+            </thead>
+            <tbody>
+              <% if (subjects.length != 0) { %>
+                <% subjects.forEach(element => { %>
+                  <tr class="record">
+                    <td><%= subjects.findIndex(el =>el.id == element.id)+1 %></td>
+                    <td><%= element.name %></td>
+                    <td><%= element.date %></td>
+                    <td><a href="#" data-mdb-toggle="modal"data-mdb-target="#exampleModaledit" class=""><i class="fa fa-pencil  fa-1x text-success"></i></a> <a href="#" class="deleteSubject" id=""><i class="fa fa-trash  fa-1x text-danger"></i></a></td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr class="record">
+                <td colspan="4" class="text-center text-danger">No data</td>
+               </tr>
+              <% }%>
+               
+              
+              
+         
+            </tbody>
+
+            <tfoot>
+               
+           </tfoot> 
+        
+          </table>
+        </div>
+   
+    </div>  
+     
+  </div>
+   
+  <%- include('footer') %>
+
+  </body>
+</html>
+

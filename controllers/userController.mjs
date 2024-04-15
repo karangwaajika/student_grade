@@ -1,4 +1,5 @@
 import {User} from '../models/user.mjs'
+import {Subject} from '../models/subject.mjs'
 import {validationResult, matchedData} from 'express-validator'
 import {hashPassword} from '../utils/hashingPassword.mjs'
 
@@ -33,10 +34,12 @@ export const addUser = async(request, response)=>{
 export const loginUser = (request, response)=>{
     response.redirect('/dashboard')
 }
+
 export const userHomePage = (request, response)=>{
     const user = request.user
     response.render('dashboard', {user})  
 } 
+
 export const logout = (request, response)=>{
     request.logout((err)=>{
         if(err){
@@ -45,5 +48,39 @@ export const logout = (request, response)=>{
             response.redirect('/') 
         }
     });
+    
+}
+
+export const viewSubject = async(request, response)=>{
+    const user = request.user
+    try{
+        const subjects = await Subject.find({})
+        response.render('add-subject', {user, subjects})
+    }catch(err){ 
+        console.log(err)
+    } 
+    
+}
+
+export const addSubject = async(request, response)=>{
+    const {body} = request
+    const sub = new Subject(body)
+    const name = body.name
+    console.log(body)
+    try{
+        const findSubject = await Subject.findOne({name})
+        if(!findSubject){
+            await Subject.create(sub)
+            await response.flash('success', 'Subject successfully added')
+            response.redirect('/addSubject')
+        }else{
+            await response.flash('error', 'Subject exist already!!!')
+            response.redirect('/addSubject')
+        }
+        
+    }catch(err){
+        await response.flash('error', err)
+        response.redirect('/addSubject')  
+    }
     
 }
