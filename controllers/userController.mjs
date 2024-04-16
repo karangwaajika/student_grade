@@ -1,5 +1,6 @@
 import {User} from '../models/user.mjs'
 import {Subject} from '../models/subject.mjs'
+import {Student} from '../models/student.mjs'
 import {validationResult, matchedData} from 'express-validator'
 import {hashPassword} from '../utils/hashingPassword.mjs'
 
@@ -103,4 +104,48 @@ export const deleteSubject = async(request, response)=>{
     }catch(err){
         console.log(err)
     }
+}
+
+export const studentPage = async(request, response)=>{
+    const user = request.user
+    try{
+        const subjects = await Subject.find({})
+        response.render('add-student', {user, subjects})
+    }catch(err){ 
+        console.log(err)
+    }
+}
+
+export const addStudent = async(request, response)=>{
+    const {body} = request
+    const student = new Student(body)
+    const studentCode = body.code 
+    console.log(body)
+    try{
+        const findStudent = await Student.findOne({code:studentCode})
+        if(!findStudent){ 
+            await Student.create(student)
+            await response.flash('success', 'Student successfully added')
+            response.redirect('/addStudent')
+        }else{
+            await response.flash('error', 'Student exist already!!!')
+            response.redirect('/addStudent')
+        }
+        
+    }catch(err){
+        console.log(err)
+    }
+    
+}
+
+export const viewStudent = async(request, response)=>{
+    const user = request.user
+    try{
+        const students = await Student.find({}).
+        populate('favoriteSubject').
+        exec()                               
+        response.render('view-student', {user, students})
+    }catch(err){ 
+        console.log(err)
+    } 
 }

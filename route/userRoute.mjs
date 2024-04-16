@@ -27,5 +27,8 @@ route.get('/addSubject', controller.viewSubject)
 route.post('/addSubject', upload.none(), controller.addSubject)
 route.post('/updateSubject', upload.none(), controller.updateSubject)
 route.get('/deleteSubject/:id', controller.deleteSubject)
+route.get('/addStudent', controller.studentPage)
+route.post('/addStudent', upload.none(), controller.addStudent)
+route.get('/viewStudent', controller.viewStudent)
 
 export default route 

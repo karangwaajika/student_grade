@@ -1,0 +1,67 @@
+<%- include('header') %>
+      <div class="row mt-3">
+        <div class="col-md-4 offset-5 text-dark ">
+        <h4>Students List</h4>
+      </div>
+      </div>
+    <div class="row mt-3">
+     
+     
+        <div class="col-md-10 offset-1">
+          <% for( msg of getFlashMessages('update') ) { %>
+            <div class='alert alert-success animated bounce col-md-10 offset-1' id='sams' >
+                <center><i> <%= msg %></i></center>       
+            </div>
+            <% } %>
+          <table id="" class="table table-sm "  cellspacing="0" width="100%">
+            <thead class="">
+              <tr>
+                <th class="th-sm font-weight-bold">#</th>
+                <th class="th-sm font-weight-bold">Name</th> 
+                <th class="th-sm font-weight-bold">Code</th> 
+                <th class="th-sm font-weight-bold">Favorite Subject</th>
+                <th class="th-sm font-weight-bold">Academic Year </th>
+                <th class="th-sm font-weight-bold text-center">Action</th>
+             
+              </tr>
+            </thead>
+            <tbody>
+              <% if (students.length != 0) { %>
+                <% students.forEach(element => { %>
+                  <tr class="record">
+                    <td><%= students.findIndex(el =>el.id == element.id)+1 %></td>
+                    <td><%= element.name %></td>
+                    <td><%= element.code %></td>
+                    <td><%= element.favoriteSubject.name %></td>
+                    <td><%= element.academicYear %></td>
+                    <td><a href="#" data-mdb-toggle="modal"data-mdb-target="#exampleModaledit<%= element.id%>" class=""><i class="fa fa-pencil  fa-1x text-success"></i></a> <a href="#" class="deleteSubject" id="<%= element.id%>"><i class="fa fa-trash  fa-1x text-danger"></i></a></td>
+                    
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr class="record">
+                <td colspan="4" class="text-center text-danger">No data</td>
+               </tr>
+              <% }%>
+               
+              
+              
+         
+            </tbody>
+
+            <tfoot>
+               
+           </tfoot> 
+        
+          </table>
+        </div>
+   
+    </div>  
+     
+  </div>
+   
+  <%- include('footer') %>
+
+  </body>
+</html>
+
