@@ -1,0 +1,253 @@
+<%- include('header') %>
+      
+    <div class="row mt-3">
+        <div class="col-md-4">
+                  
+            <div class="form-group">
+                <div class="input-group">
+                    
+                    <span  class="input-group-text"><i class="fa fa-search"></i></span> 
+                    <input type="text" name="search" id="search" placeholder="Search Student" class="form-control" />
+                </div>
+            </div><br />
+
+            <div id="match-list"></div>
+            
+                      
+        </div>
+        <div class="col-md-4 offset-4 text-dark ">
+            <h5>Student Name: Ajika</h5>
+        </div>
+    </div>  
+
+    <div class="row">
+        <ul class="nav nav-tabs nav-justified mb-3" id="ex1" role="tablist">
+         
+            <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="ex3-tab-1"
+              data-mdb-toggle="tab"
+              href="#subject"
+              role="tab"
+              aria-controls="ex3-tabs-1"
+              aria-selected="true"
+              >Subject Marks</a
+            >
+          </li>
+        
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="ex3-tab-1"
+              data-mdb-toggle="tab"
+              href="#behavior"
+              role="tab"
+              aria-controls="ex3-tabs-1"
+              aria-selected="true"
+              >Behavior Marks</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="ex3-tab-1"
+              data-mdb-toggle="tab"
+              href="#sports"
+              role="tab"
+              aria-controls="ex3-tabs-1"
+              aria-selected="true"
+              >Sports Marks</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="ex3-tab-1"
+              data-mdb-toggle="tab"
+              href="#speaking"
+              role="tab"
+              aria-controls="ex3-tabs-1"
+              aria-selected="true"
+              >Publick Speaking</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              id="ex3-tab-1"
+              data-mdb-toggle="tab"
+              href="#debate"
+              role="tab"
+              aria-controls="ex3-tabs-1"
+              aria-selected="true"
+              >Debate</a
+            >
+          </li>
+        
+        </ul>
+
+        <div class="tab-content" id="ex2-content">
+          <div
+            class="tab-pane fade show active"
+            id="subject"
+            role="tabpanel"
+            aria-labelledby="ex3-tab-1"
+          >
+            <div class="row">
+              
+              <div class="col-md-6 offset-3">
+              
+               <form action="" enctype="multipart/form-data" id="myFormSubject">
+                     <div class="form-group col-md-12 mb-3">
+                     <div class="input-group " id="subjectName">
+                       <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                       <input type="text" class="form-control"  placeholder="%"  name="marks" />
+                         <span class="input-group-text" id="basic-addon2">Marks/100</span>
+                     </div>
+                     </div>
+                     
+                    <div class="form-group col-md-12 mb-3">
+                    <div class="input-group">
+                      <select name="favoriteSubject" id=""class="form-control " required >
+                        <option value="notSelected">Select Favorite Subject...</option>
+                        
+                        <% subjects.forEach(element => { %>
+                        <option value="<%= element.id %>"><%= element.name %> </option>
+                        <% }) %>
+                       </select>
+                      <span class="input-group-text" id="basic-addon2"><i class="fa fa-caret-down"></i></span>
+                    </div>
+                    </div>
+                    <input type="hidden" name="studentName" value="<?php if (isset($_GET['id'])):?><?php echo $fileDataStudent[$key]['studentName'];?><?php endif ?>">
+              
+                    <div class="form-group col-md-12 mb-3">
+                     <div class="input-group col-md-12 mb-3">
+                      <input type="hidden"  name="action" value="subject">
+                       <button type="submit" class="btn btn-outline-primary btn-block"  id="action_button" name="signUp">Send</button>
+                     </div>
+                   </div>
+                     
+                     </form>
+              </div>
+               
+          </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="behavior"
+            role="tabpanel"
+            aria-labelledby="ex3-tab-1"
+          >
+            <div class="row">
+              <div class="col-md-6 offset-3">
+                <form action="" enctype="multipart/form-data" id="myFormSubject">
+                     <div class="form-group col-md-12 mb-3">
+                     <div class="input-group " id="subjectName">
+                       <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                       <input type="text" class="form-control"  placeholder="%"  name="marks" />
+                         <span class="input-group-text" id="basic-addon2">Marks/100</span>
+                     </div>
+                     </div>
+                     
+                    <div class="form-group col-md-12 mb-3">
+                   <input type="hidden" name="studentId" value="<?php if (isset($_GET['id'])):?><?php
+                echo $fileDataStudent[$key]['studentName'];
+                ?>
+              <?php endif ?>">
+                      <input type="checkbox" name="subName" value="Attendence" id="Attendence"> Attendance<br>
+                      <input type="checkbox" name="subName" value="Hygiene"  id="Hygiene"> Hygiene<br>
+                      <input type="checkbox" name="subName" value="Social" id="Social"> Social<br>
+                     
+                      
+                    </div>
+                    
+                  
+                     
+                     </form>
+              </div>
+              
+               
+          </div>
+          </div>
+           <div
+            class="tab-pane fade"
+            id="sports"
+            role="tabpanel"
+            aria-labelledby="ex3-tab-1"
+          >
+            <div class="row">
+              <div class="col-md-4 offset-4">
+                <h4>Sports</h4>
+              </div>
+              
+               
+          </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="speaking"
+            role="tabpanel"
+            aria-labelledby="ex3-tab-1"
+          >
+            <div class="row">
+              <div class="col-md-4 offset-4">
+                <h4>Public Speaking</h4>
+              </div>
+              
+               
+          </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="debate"
+            role="tabpanel"
+            aria-labelledby="ex3-tab-1"
+          >
+            <div class="row">
+              <div class="col-md-4 offset-4">
+                <h4>Debate</h4>
+              </div>
+              
+               
+          </div>
+          </div>
+          </div>
+              </div>
+     
+  </div>
+  
+  <%- include('footer') %>
+  <script type="text/javascript">
+    let currentString ='';
+    $("#search").keyup(function (e) {
+        const list = document.querySelector('#match-list')
+
+        let currentKey = '';
+        
+        if(e.keyCode == 8){ // if backspace key is pressed
+            let extractLastElement = currentString.slice(0, currentString.length - 1); // remove the last element
+            currentString = extractLastElement; //update the current string to a new substring
+        }else if(e.keyCode == 16){ //if the shift key is pressed
+            currentKey = ''; // not consider the shift key value
+        }
+        else{
+            currentKey = e.key;
+        }
+        currentString += currentKey
+        var info = 'name=' + currentString;
+        $.ajax({
+          type: "GET",
+          url: "retrieveStudent/",
+          data:info,
+          success: function(response){
+            $("#match-list").html(response); 
+          }
+       });
+    
+    });
+     
+  </script>
+  </body>
+</html>
+

@@ -30,5 +30,7 @@ route.get('/deleteSubject/:id', controller.deleteSubject)
 route.get('/addStudent', controller.studentPage)
 route.post('/addStudent', upload.none(), controller.addStudent)
 route.get('/viewStudent', controller.viewStudent)
+route.get('/giveMarks', controller.marksPage)
+route.get('/retrieveStudent', controller.retrieveStudent)
 
 export default route 

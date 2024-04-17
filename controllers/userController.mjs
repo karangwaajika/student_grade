@@ -149,3 +149,29 @@ export const viewStudent = async(request, response)=>{
         console.log(err)
     } 
 }
+export const marksPage = async(request, response)=>{
+    const user = request.user
+    try{
+        const subjects = await Subject.find({name:{ $regex: /S/i }}) 
+                                   
+        response.render('marks', {user, subjects})
+    }catch(err){ 
+        console.log(err)
+    } 
+}
+export const retrieveStudent = async(request, response)=>{
+    const user = request.user
+    const {query:{name}} = request
+    try{
+        let students = await Student.find({name:{$regex:''+name+'',$options: 'i'}}) 
+        if(name != ''){
+            response.render('retrieve-student', {students})
+        }else{
+            students=[]
+            response.render('retrieve-student', {students})
+        }
+        
+    }catch(err){ 
+        console.log(err)
+    } 
+}
