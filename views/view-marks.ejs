@@ -1,0 +1,43 @@
+<%- include('header') %>
+      <div class="row mt-3">
+        <div class="col-md-4 offset-5 text-dark ">
+        <h4>Subject List</h4>
+      </div>
+      </div>
+    <div class="row mt-3">
+     
+     
+        <div class="col-md-10 offset-1">
+            <% subjects.forEach(element => { %>
+                <div class="border border-dark mb-1 p-1 text-dark text-center" style="background-color: rgb(207, 245, 175);">
+                    <%= element.name %>
+                </div>
+                <table class="table table-sm "  cellspacing="0" width="100%">
+                <% studentMarks.filter((el)=>el.subjectId.id == element.id).forEach(ele => { %>
+                        
+                        <tr>
+                            <td><%= ele.studentId.name %></td>
+                            <td><%= ele.marks %></td>
+                            <td>
+                            <% if (ele.marks >= 50) { %>
+                                <i class="badge badge-success">Succeeded</i>
+                            <% } else { %>
+                                <i class="badge badge-danger">Failed</i>
+                            <% }%>
+                            </td>
+                        </tr>
+                <% }) %>
+                </table>
+                
+            <% }) %>
+        </div>
+   
+    </div>  
+     
+  </div>
+   
+  <%- include('footer') %>
+
+  </body>
+</html>
+

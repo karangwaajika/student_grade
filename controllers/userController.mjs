@@ -187,14 +187,29 @@ export const retrieveStudent = async(request, response)=>{
 
 export const insertMarks = async(request, response) =>{
     const {body}= request
-    //const marks = new Marks(body)
+    const marks = new Marks(body)
     try{
-        // await Marks.create(marks)
+        await Marks.create(marks)
         const studentMarks = await Marks.find({studentId:body.studentId}).
         populate('studentId').
         populate('subjectId').
         exec() 
         response.render('inserted-marks', {studentMarks})
+    }catch(err){ 
+        console.log(err)
+    }
+    
+} 
+
+export const viewMarks = async(request, response) =>{
+    const user = request.user
+    try{
+        const studentMarks = await Marks.find({}).
+        populate('studentId').
+        populate('subjectId').
+        exec() 
+        const subjects = await Subject.find({})
+        response.render('view-marks', {user, studentMarks, subjects})
     }catch(err){ 
         console.log(err)
     }
