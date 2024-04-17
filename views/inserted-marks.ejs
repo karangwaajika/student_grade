@@ -1,0 +1,17 @@
+<hr>
+<div class="row">
+    <% studentMarks.forEach(element => { %>
+        <div class="col-md-3 border-end border-bottom border-warning record">
+            <div class="text-center"><%= element.subjectId.name%> <%= element.marks%> %</div>
+            <hr>
+            <div class="offset-4">
+            <% if (element.marks >= 50) { %>
+                <i class="badge badge-success">Succeeded</i>
+            <% } else { %>
+                <i class="badge badge-danger">Failed</i>
+            <% }%>
+            </div>
+        </div>
+    <% }) %>
+    
+</div>

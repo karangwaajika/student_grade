@@ -1,6 +1,7 @@
 import {User} from '../models/user.mjs'
 import {Subject} from '../models/subject.mjs'
 import {Student} from '../models/student.mjs'
+import {Marks} from '../models/marks.mjs'
 import {validationResult, matchedData} from 'express-validator'
 import {hashPassword} from '../utils/hashingPassword.mjs'
 
@@ -151,12 +152,20 @@ export const viewStudent = async(request, response)=>{
 }
 export const marksPage = async(request, response)=>{
     const user = request.user
+    const {query:{id}} = request
     try{
-        const subjects = await Subject.find({name:{ $regex: /S/i }}) 
-                                   
-        response.render('marks', {user, subjects})
+        if(id){
+            const subjects = await Subject.find({})   
+            const student = await Student.findById(id).exec()                      
+            response.render('marks', {user, subjects, student})
+        }else{
+            const subjects = await Subject.find({}) 
+            const student = {}                   
+            response.render('marks', {user, subjects, student})
+        }
+        
     }catch(err){ 
-        console.log(err)
+        console.log(err) 
     } 
 }
 export const retrieveStudent = async(request, response)=>{
@@ -175,3 +184,19 @@ export const retrieveStudent = async(request, response)=>{
         console.log(err)
     } 
 }
+
+export const insertMarks = async(request, response) =>{
+    const {body}= request
+    //const marks = new Marks(body)
+    try{
+        // await Marks.create(marks)
+        const studentMarks = await Marks.find({studentId:body.studentId}).
+        populate('studentId').
+        populate('subjectId').
+        exec() 
+        response.render('inserted-marks', {studentMarks})
+    }catch(err){ 
+        console.log(err)
+    }
+    
+} 

@@ -32,5 +32,6 @@ route.post('/addStudent', upload.none(), controller.addStudent)
 route.get('/viewStudent', controller.viewStudent)
 route.get('/giveMarks', controller.marksPage)
 route.get('/retrieveStudent', controller.retrieveStudent)
+route.post('/insertMarks', controller.insertMarks)
 
 export default route 

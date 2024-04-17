@@ -1,8 +1,7 @@
 <%- include('header') %>
       
     <div class="row mt-3">
-        <div class="col-md-4">
-                  
+        <div class="col-md-4">      
             <div class="form-group">
                 <div class="input-group">
                     
@@ -15,9 +14,16 @@
             
                       
         </div>
-        <div class="col-md-4 offset-4 text-dark ">
-            <h5>Student Name: Ajika</h5>
+        <% if (Object.keys(student).length == 0) { %>
+          <div class='text-danger animated bounce col-md-4 offset-4'>
+            <center><i> Search for a student first !!! </i></center>       
         </div>
+        <% } else { %>
+        <div class="col-md-4 offset-4 text-dark ">
+            <h5>Student Name: <%= student.name %> </h5>
+        </div>
+        <% }%>
+        
     </div>  
 
     <div class="row">
@@ -25,7 +31,7 @@
          
             <li class="nav-item" role="presentation">
             <a
-              class="nav-link"
+              class="nav-link active"
               id="ex3-tab-1"
               data-mdb-toggle="tab"
               href="#subject"
@@ -98,33 +104,34 @@
               
               <div class="col-md-6 offset-3">
               
-               <form action="" enctype="multipart/form-data" id="myFormSubject">
-                     <div class="form-group col-md-12 mb-3">
-                     <div class="input-group " id="subjectName">
-                       <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                       <input type="text" class="form-control"  placeholder="%"  name="marks" />
-                         <span class="input-group-text" id="basic-addon2">Marks/100</span>
-                     </div>
-                     </div>
-                     
-                    <div class="form-group col-md-12 mb-3">
+               <form id="myFormSubject">
+                  <div class="form-group col-md-12 mb-3">
                     <div class="input-group">
-                      <select name="favoriteSubject" id=""class="form-control " required >
-                        <option value="notSelected">Select Favorite Subject...</option>
+                      <select name="subjectId" id="subjectId" class="form-control " required >
+                        <option value="notSelected">Select Subject...</option>
                         
                         <% subjects.forEach(element => { %>
                         <option value="<%= element.id %>"><%= element.name %> </option>
                         <% }) %>
-                       </select>
+                      </select>
                       <span class="input-group-text" id="basic-addon2"><i class="fa fa-caret-down"></i></span>
                     </div>
                     </div>
-                    <input type="hidden" name="studentName" value="<?php if (isset($_GET['id'])):?><?php echo $fileDataStudent[$key]['studentName'];?><?php endif ?>">
+
+                     <div class="form-group col-md-12 mb-3">
+                     <div class="input-group " id="subjectName">
+                       <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                       <input type="number" class="form-control"  placeholder="%"  name="marks" id="marks"/>
+                         <span class="input-group-text" id="basic-addon2">Marks/100</span>
+                     </div>
+                     </div>
+                     
+                    <input type="hidden" name="studentId" id="studentId" value="<%= student.id %>">
               
                     <div class="form-group col-md-12 mb-3">
                      <div class="input-group col-md-12 mb-3">
                       <input type="hidden"  name="action" value="subject">
-                       <button type="submit" class="btn btn-outline-primary btn-block"  id="action_button" name="signUp">Send</button>
+                       <button type="submit" class="btn btn-outline-primary btn-block"  id="submit" name="signUp">Send</button>
                      </div>
                    </div>
                      
@@ -151,10 +158,7 @@
                      </div>
                      
                     <div class="form-group col-md-12 mb-3">
-                   <input type="hidden" name="studentId" value="<?php if (isset($_GET['id'])):?><?php
-                echo $fileDataStudent[$key]['studentName'];
-                ?>
-              <?php endif ?>">
+                      <input type="hidden" name="studentId" value="">
                       <input type="checkbox" name="subName" value="Attendence" id="Attendence"> Attendance<br>
                       <input type="checkbox" name="subName" value="Hygiene"  id="Hygiene"> Hygiene<br>
                       <input type="checkbox" name="subName" value="Social" id="Social"> Social<br>
@@ -214,7 +218,15 @@
           </div>
           </div>
               </div>
-     
+              <div class="row mt-5">
+                
+                <d class="col-md-10 offset-1">
+                 
+                  <div id="response"></div>
+                 
+                </div>
+        
+              </div>
   </div>
   
   <%- include('footer') %>
@@ -242,6 +254,28 @@
           data:info,
           success: function(response){
             $("#match-list").html(response); 
+          }
+       });
+    
+    });
+     
+  </script>
+  <script type="text/javascript">
+    
+    $("#submit").click(function (e) {
+      e.preventDefault();
+        const list = document.querySelector('#match-list')
+        let marks = $('#marks').val(); 
+        let studentId = $('#studentId').val(); 
+        let subjectId = $('#subjectId').val(); 
+        
+        $.ajax({
+          type: "POST",
+          url: "insertMarks/",
+          data:{marks, studentId, subjectId},
+          success: function(response){
+            $("#response").html(response); 
+            //console.log(response)
           }
        });
     
